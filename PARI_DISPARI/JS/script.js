@@ -6,13 +6,13 @@ Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
 Dichiariamo chi ha vinto. */
 
 //chiamiamo l'utente a scegliere pari o dispari
-let pariDispari = 'pari'; //prompt('Scegli se il risutalto finale sarà pari o dispari');
-while (pariDispari !== 'pari' && pariDispari !== 'dispari' && pariDispari !== 'Pari' && pariDispari !== 'Dispari') {
+let userChoice = prompt('Scegli se il risutalto finale sarà pari o dispari');
+while (userChoice !== 'pari' && userChoice !== 'dispari') {
     alert('Scelta non valida! Ritenta.');
-    pariDispari = prompt('Scrivi solo "pari" o "dispari"');
+    userChoice = prompt('Scrivi solo "pari" o "dispari"');
 }    
 //stampo la sua scelta
-console.log(`la tua scelta è: ${pariDispari}`)
+console.log(`la tua scelta è: ${userChoice}`)
 
 //chiamiamo l'utente a scegliere un numero da 1 a 5
 let numUser = Number(prompt('Scegli un numero da 1 a 5'))
@@ -32,31 +32,59 @@ let numbersSum = numSum(genNumRandInRange(1,5),numUser);
 //la stampo
 console.log(`La somma dei due numeri è: ${numbersSum}`);
 
-numSommaEvenOdd = evenOdd(numbersSum);
-console.log(numSommaEvenOdd)
+//indetifico la somma in pari o disapri
+numSommaEvenOdd = evenOrOdd(numbersSum);
+//stampo il risultato 
+console.log(`La somma dei due numeri è: ${numSommaEvenOdd}`);
+
+//identifico il vincitore
+userWinOrLose = winner(userChoice, evenOrOdd(numbersSum));
+//stampo il risultato
+console.log(userWinOrLose);
 
 
 
 
 //////////////FUNZIONI
 
-//creo una funzione che genera un numero random da 1 5
+//creo una funzione che genera un numero random in un range
 function genNumRandInRange(min,max){
+    //creo e restituisco un range in cui si possono generare i numeri
     return Math.floor(Math.random() * (max -min)) + min;
 }
 
 //creo una funzione per sommare due variabili
 function numSum (num1, num2){
+    //faccio sommare i due dati
     let sum = num1 + num2;
+    //restituisco la somma
     return sum
 }
 
 //creo una funzione per vedere se un numero è pari o dispari
-function evenOdd (number){
-    let evenOdd = 'odd';
+function evenOrOdd (number){
+    //creo una variabile che parta da dispari
+    let evenOdd = 'dispari';
+    //gli faccio valutare se il numero sia pari
     if (number % 2 === 0){
-        evenOdd = 'even'
+        //cambio la variabile in pari se la condizione è rispettata
+        evenOdd = 'pari'
     }
+    //restituisco il risultato
     return evenOdd;
 }
+
+//creo una funzione per identificare il vincitore
+function winner (userData, compare){
+    //creo una variabile che parta dalla sconfitta
+    let winOrLose = 'HAI PERSO :(';
+    //gli faccio valutare se la scelta dell'utente corrisponda con il risultato effettivo
+    if (userData === compare){
+        //cambio la varibile in vittoria nel caso la condizione sia rispettata
+        winOrLose = 'HAI VINTO :)'
+    }
+    //restituisco il risultato
+    return winOrLose;
+}
+
 
