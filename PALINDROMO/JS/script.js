@@ -4,7 +4,7 @@ Creare una funzione per capire se la parola inserita è palindroma */
 
 //chiediamo all'utente una parola
 const word = prompt('Inserisci qui la tua parola');
-console.log(palindromeVerifier(reverseWord(word),word));
+console.log(palindromeVerifier(word, reverseWord(word)));
 
 //impostiamo la funzione per reversare la stringa
 function reverseWord(string){
